@@ -1,0 +1,65 @@
+// Olivia Erskine
+// Sept 19 2024
+// C++ code to output a worker's gross pay, withholding amounts, and net take-home pay for the week. 
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	// variables
+	int numberOfHours, numberOfDependents, overTime;
+	float grossPay, socialSecurity, federal, state, unionDues, takeHome, insurance;
+	
+	// init
+	cout.setf (ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+
+	// input
+	cout << "Enter the number of hours worked: ";
+	cin >> numberOfHours;
+	cout << "Enter the number of dependents: ";
+	cin >> numberOfDependents;
+
+	// processing
+	if (numberOfHours > 40)
+	{
+		grossPay = (16.78 * 40) + (16.78 * (numberOfHours - 40) * 1.5);
+	}
+	else
+	{
+		grossPay = 16.78 * 40;
+	}
+	
+	socialSecurity = .06 * grossPay;
+	federal = .14 * grossPay;
+	state = .05 * grossPay;
+	unionDues = 10;
+
+	if (numberOfDependents > 2)
+	{
+		insurance = 35;
+	}
+	else
+	{
+		insurance = 0;
+	}
+
+	takeHome = grossPay - (socialSecurity + federal + state + unionDues + insurance);
+	
+	// output
+	cout << endl;
+	cout << "Gross pay is     : " << grossPay << endl;
+	cout << endl;
+	cout << "SS tax is        : " << socialSecurity << endl;
+	cout << "Fed tax is       : " << federal << endl;
+	cout << "State tax is     : " << state << endl;
+	cout << "Union dues is    : " << unionDues << endl;
+	cout << "Insurance is     : " << insurance << endl;
+	cout << endl;
+	cout << "Take home pay is : " << takeHome << endl;
+	cout << endl;
+
+	return 0;
+}
